@@ -1,0 +1,20 @@
+SimulationType                MonteCarlo
+NumberOfCycles                100
+NumberOfInitializationCycles  100
+Forcefield                    raspa
+ChargeMethod                  None
+CutOffVDW                     12.8
+RandomSeed                    1
+
+Framework 0 
+            FrameworkName                 IRMOF-2
+            RemoveAtomNumberCodeFromLabel no
+            UnitCells                     1 1 1
+            ExternalTemperature           298.0
+
+Component 0 MoleculeName                  CO2
+            MoleculeDefinition            local
+            IdealRosenbluthValue          1.0
+            WidomProbability              1.0
+            CreateNumberOfMolecules       0
+
