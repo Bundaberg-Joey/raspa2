@@ -1,6 +1,6 @@
 SimulationType                MonteCarlo
-NumberOfInitializationCycles  1000
-NumberOfCycles                1000
+NumberOfInitializationCycles  1500
+NumberOfCycles                1500
 Forcefield                    raspa
 ChargeMethod                  None
 CutOffVDW                     XXX
