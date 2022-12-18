@@ -58,21 +58,23 @@ if not os.path.exists(FF_OUT):
 forcefield_path = F'forcefields/{FF}'
 cifs = [(c.replace('.cif', ''), os.path.join('cifs', c)) for c in os.listdir('cifs') if '.cif' in c]
 cuttoff_radii = [12, 14, 16]
+n_repeats = 5
 
 
 # WRITING TASKS
 tasks = []
 for mof, mof_path in cifs:
     for r in cuttoff_radii:
-        dir_name = os.path.join(FF_OUT, F'{mof}_{r}')
-        
-        copytree(forcefield_path, dir_name)
-        copy(mof_path, dir_name)
-        
-        with open(os.path.join(dir_name, 'simulation.input'), 'w') as f:
-            f.write(xe_kr_input(mof, r))
-        
-        tasks.append(F'tsp hare run --rm -it -v $PWD/{dir_name}:/app raspa simulate simulation.input')
+        for n_ in range(n_repeats):
+            dir_name = os.path.join(FF_OUT, F'{mof}_{r}_{n_}')
+            
+            copytree(forcefield_path, dir_name)
+            copy(mof_path, dir_name)
+            
+            with open(os.path.join(dir_name, 'simulation.input'), 'w') as f:
+                f.write(xe_kr_input(mof, r))
+            
+            tasks.append(F'tsp hare run --rm -it -v $PWD/{dir_name}:/app raspa simulate simulation.input')
         
 
 # dont need the output of these so just delete them (needs to be done through the docker image because of permission)
