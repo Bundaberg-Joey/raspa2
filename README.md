@@ -14,3 +14,16 @@ docker build -t raspa .
 cd demo
 sh demo_tasks.sh
 ```
+
+## Fugacitiy info
+* [Patrick Barrie's program for solving cubic equations of state](https://pjb10.user.srcf.net/thermo/pure.html) was used to arrive at the below fugacities
+* Data regarding critical points and accentric factors were taken from [this website](http://www.kaylaiacovino.com/Petrology_Tools/Critical_Constants_and_Acentric_Factors.htm)
+
+|Material|Temperature|Pressure|Fugacity|
+|:--:|:--:|:--:|:--:|
+|Xe|273|1.0|0.9918|
+|Kr|273|1.0|0.9967|
+|Xe|273|5.0|0.9592|
+|Kr|273|5.0|0.9837|
+|Xe|273|10.0|0.9190|
+|Kr|273|10.0|0.9671|
