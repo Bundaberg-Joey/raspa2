@@ -1,0 +1,33 @@
+SimulationType                MonteCarlo
+NumberOfInitializationCycles  1000
+NumberOfCycles                1000
+Forcefield                    raspa
+ChargeMethod                  None
+CutOffVDW                     XXX
+
+Framework 0 FrameworkName                 XXX
+            RemoveAtomNumberCodeFromLabel no
+            UnitCells                     2 2 2
+            ExternalTemperature           273.0
+
+Component 0 MoleculeName                  xenon
+            MoleculeDefinition            local
+            MolFraction                   0.20
+            FugacityCoefficient           XXX
+            ReinsertionProbability        1.0
+            SwapProbability               1.0
+            TranslationProbability        1.0
+            IdentityChangeProbability     1.0
+                NumberOfIdentityChanges   2
+                IdentityChangesList       0 1
+
+Component 1 MoleculeName                  krypton
+            MoleculeDefinition            local
+            MolFraction                   0.80
+            FugacityCoefficient           XXX
+            ReinsertionProbability        1.0
+            SwapProbability               1.0
+            TranslationProbability        1.0
+            IdentityChangeProbability     1.0
+                NumberOfIdentityChanges   2
+                IdentityChangesList       0 1
