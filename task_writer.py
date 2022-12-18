@@ -49,6 +49,7 @@ Component 1 MoleculeName                  krypton
 # GLOBALS
 FF = 'Xe-Kr'
 FF_OUT = F'output_{FF}'
+IMAGE = 'crh53/raspa2'
 
 if not os.path.exists(FF_OUT):
     os.mkdir(FF_OUT)
@@ -74,11 +75,11 @@ for mof, mof_path in cifs:
             with open(os.path.join(dir_name, 'simulation.input'), 'w') as f:
                 f.write(xe_kr_input(mof, r))
             
-            tasks.append(F'tsp hare run --rm -it -v $PWD/{dir_name}:/app raspa simulate simulation.input')
+            tasks.append(F'tsp hare run --rm -it -v $PWD/{dir_name}:/app {IMAGE} simulate simulation.input')
         
 
 # dont need the output of these so just delete them (needs to be done through the docker image because of permission)
-tasks.append(F'tsp hare run --rm -it -v $PWD/{dir_name}:/app raspa rm -rf */Movies/ */VTK/ */Restart')
+tasks.append(F'tsp hare run --rm -it -v $PWD/{dir_name}:/app {IMAGE} rm -rf */Movies/ */VTK/ */Restart')
         
         
 with open(os.path.join(FF_OUT, 'tasks.sh'), 'w') as f:
