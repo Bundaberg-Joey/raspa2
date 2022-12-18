@@ -17,13 +17,13 @@ sh demo_tasks.sh
 
 ## Fugacitiy info
 * [Patrick Barrie's program for solving cubic equations of state](https://pjb10.user.srcf.net/thermo/pure.html) was used to arrive at the below fugacities
-* Data regarding critical points and accentric factors were taken from [this website](http://www.kaylaiacovino.com/Petrology_Tools/Critical_Constants_and_Acentric_Factors.htm)
+* Data regarding critical points and accentric factors for the calculation were taken from the `Xe` and `Kr` files provided by the hMOF database (themselves taken from NIST)
 
 |Material|Temperature|Pressure|Fugacity|
 |:--:|:--:|:--:|:--:|
-|Xe|273|1.0|0.9918|
+|Xe|273|1.0|0.9924|
 |Kr|273|1.0|0.9967|
-|Xe|273|5.0|0.9592|
+|Xe|273|5.0|0.9623|
 |Kr|273|5.0|0.9837|
-|Xe|273|10.0|0.9190|
+|Xe|273|10.0|0.9253|
 |Kr|273|10.0|0.9671|
