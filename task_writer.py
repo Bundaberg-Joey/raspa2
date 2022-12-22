@@ -14,7 +14,8 @@ Forcefield                    raspa
 ChargeMethod                  None
 CutOffVDW                     {cuttoff}
 
-Framework 0 FrameworkName                 {mof_name}
+Framework 0 
+            FrameworkName                 {mof_name}
             RemoveAtomNumberCodeFromLabel no
             Movies                        no
             UnitCells                     2 2 2
