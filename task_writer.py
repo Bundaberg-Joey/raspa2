@@ -1,6 +1,7 @@
 import os
 from shutil import copytree, copy
 
+from tqdm import tqdm
 
 # -------------------------------------------------------------------------------------
 
@@ -64,7 +65,7 @@ n_repeats = 5
 
 # WRITING TASKS
 tasks = []
-for mof, mof_path in cifs:
+for mof, mof_path in tqdm(cifs):
     for r in cuttoff_radii:
         for n_ in range(n_repeats):
             dir_name = os.path.join(FF_OUT, F'{mof}_{r}_{n_}')
