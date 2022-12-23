@@ -84,5 +84,5 @@ for mof, mof_path in tqdm(cifs):
 tasks.append(F'tsp hare run --rm -it -v $PWD/{dir_name}:/app {IMAGE} rm -rf */Movies/ */VTK/ */Restart')
         
         
-with open(os.path.join(FF_OUT, 'tasks.sh'), 'w') as f:
+with open('tasks.sh', 'w') as f:
     f.writelines([t+'\n' for t in tasks])
