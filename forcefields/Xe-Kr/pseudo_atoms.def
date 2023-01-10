@@ -1,43 +1,18 @@
 #number of pseudo atoms
-40
-#type      print   as   scat      mass       charge  polarization B-factor   radii  connectivity
-He         yes     He     He      4.002602   0.0     0.0          1.0        1.0    0
-N_Amm      yes     N       N      14.00     -1.035   0.0          1.0        1.0    0
-H_Amm      yes     H       H      1.0       +0.345   0.0          1.0        1.0    0
-Rb     yes     Rb     Rb      85.467     0.0     0.0          1.0        1.0    0
-Sr     yes	   Sr     Sr      87.63      0.0     0.0          1.0        1.0    0
-Cs     yes     Cs     Cs      132.905    0.0     0.0          1.0        1.0    0
-Zn     yes     Zn     Zn      65.38      0.0     0.0          1.0        1.448  0
-Zr     yes     Zr     Zr      91.224     0.0     0.0          1.0        1.448  0
-Cu     yes     Cu     Cu      63.546     0.0     0.0          1.0        1.448  0
-Cr	   yes     Cr     Cr      51.9961    0.0     0.0          1.0        1.448  0
-V	   yes     V       V      50.94      0.0     0.0          1.0        1.448  0
-Ni     yes     Ni     Ni      58.693     0.0     0.0          1.0        1.448  0
-N      yes     N       N      14.00      0.0     0.0          1.0        1.448  0
-O      yes     O       O      15.9994    0.0     0.0          1.0        0.68   2
-C      yes     C       C      12.0107    0.0     0.0          1.0        0.720  0
-H      yes     H       H      1.00794    0.0     0.0          1.0        0.320  0
-F      yes     F       F      19.00      0.0     0.0          1.0        1.448  0
-Cl     yes     Cl     Cl      35.45      0.0     0.0          1.0        1.448  0
-Br     yes     Br     Br      79.90      0.0     0.0          1.0        1.448  0
-B      yes     B      B       10.81      0.0     0.0          1.0        1.448  0
-W      yes     W      W       183.34     0.0     0.0          1.0        1.448  0
-P      yes     P      P       30.9738    0.0     0.0          1.0        1.448  0
-Co     yes     Co     Co      58.93      0.0     0.0          1.0        1.448  0
-O_o2       yes     O      O       15.9994   -0.123   0.0          1.0        1.448  0
-O_com      no      O      O       0.0        0.246   0.0          1.0        1.448  0
-O_OH       yes     O      O       15.9994   -1.25    0.0          1.0        1.448  0
-H_OH       yes     H      H       1.00794    0.25    0.0          1.0        1.0    0
-C_benz     yes     C      C       12.0107   -0.095   0.0          1.0        1.448  0
-H_benz     yes     H      H       1.00794    0.095   0.0          1.0        1.448  0
-Xe         yes     Xe     Xe      131.29     0.0     0.0          1.0        1.0    0
-Kr         yes     Kr     Kr      83.798     0.0     0.0          1.0        1.0    0
-CH4_sp3    yes     C       C      16.04246   0.0     0.0          1.0        1.00   0
-C_co2      yes     C       C      12.0107    0.7     1.508        1.0        0.720  0
-O_co2      yes     O       O      15.9994   -0.35    0.9475       1.0        0.68   0
-N_n2       yes     N       N      14.00674  -0.482   0.0          1.0        0.7    0
-N_com      no      N       N      0.0        0.964   0.0          1.0        0.7    0
-H_h2       yes     H       H      1.00794    0.468   0.0          1.0        0.7    0
-H_com      no      H       H      0.0       -0.936   0.0          1.0        0.7    0
-Ow	   yes     O       O      15.9994   -0.8476  0.0          1.0        1.0    0
-Hw         yes     H       H      1.00794    0.4238  0.0          1.0        1.0    0
+14
+#type  print   as   scat   oxidation    mass       charge  polarization B-factor   radii  connectivity
+He     yes     He    He       0         4.002602      0         0          1       1   0
+C      yes     C     C        0         12.0107       0         0          1       0.72    0
+O      yes     O     O        0         15.9994       0         0          1       0.68    2
+H      yes     H     H        0         1.00794       0         0          1       0.32    0
+N      yes     N     N        0         14  0         0         1          1.448   0
+F      yes     F     F        0         19  0         0         1          1.448   0
+Cl     yes     Cl    Cl       0         35.45         0         0          1       1.448   0
+Br     yes     Br    Br       0         79.9          0         0          1       1.448   0
+Zn     yes     Zn    Zn       0         65.38         0         0          1       1.448   0
+Cu     yes     Cu    Cu       0         63.546        0         0          1       1.448   0
+V      yes     V     V        0         50.94         0         0          1       1.448   0
+Zr     yes     Zr    Zr       0         91.224        0         0          1       1.448   0
+Xe     yes     Xe    Xe       0         131.29        0         0          1       1   0
+Kr     yes     Kr    Kr       0         83.798        0         0          1       1   0
+
