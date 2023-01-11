@@ -1,12 +1,12 @@
 
-def xe_kr_input(mof_name, cuttoff):
+def xe_kr_input(mof_name):
     sim_details = F"""SimulationType                MonteCarlo
 NumberOfCycles                1000
 NumberOfInitializationCycles  1000
 PrintEvery                    250
 Restart File                  no
 ChargeMethod                  none
-CutOff                        {cuttoff}
+CutOff                        16.0
 
 Framework 0
 FrameworkName {mof_name}
