@@ -6,7 +6,7 @@ NumberOfInitializationCycles  1000
 PrintEvery                    250
 Restart File                  no
 ChargeMethod                  none
-CutOff                        16.0
+CutOff                        14.0
 
 Framework 0
 FrameworkName {mof_name}
