@@ -2,6 +2,7 @@ import os
 from uuid import uuid4
 
 from tqdm import tqdm
+import pandas as pd
 
 from simulations.input import xe_kr_input
 
@@ -23,7 +24,8 @@ os.system(F'cp cifs/*.cif {FF_OUT}')  # copy all cif files
 
 
 # PARAMETERS TO EVALUATE
-cifs = [c.replace('.cif', '') for c in os.listdir('cifs') if '.cif' in c]
+#cifs = [c.replace('.cif', '') for c in os.listdir('cifs') if '.cif' in c]
+cifs = pd.read_csv('E6_07_missing.txt', header=None)[0].tolist()
 
 
 # CREATING TASKS
