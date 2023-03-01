@@ -72,5 +72,5 @@ def extract_cif_cell(cif_path):
 
 def calc_min_image_indices(cif_path, cutoff):
     cell = extract_cif_cell(cif_path)
-    na, nb, nc = find_minimum_image(cell)
+    na, nb, nc = find_minimum_image(cell, cutoff)
     return na, nb, nc
