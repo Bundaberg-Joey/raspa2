@@ -45,7 +45,7 @@ for cif_file in tqdm(cifs):
                 f.writelines(content)
             
             tasks.append(F'echo "$(date) | starting sim [{count} / {n_tasks}]" \n')
-            tasks.append(F'simulate {sim_file_name} -a {k} \n')
+            tasks.append(F'simulate -i {sim_file_name} -a {k} \n')
             tasks.append(F'echo "$(date) | finishing sim [{count} / {n_tasks}]" \n')
             count += 1
             
