@@ -1,93 +1,52 @@
 import os
-from uuid import uuid4
+from glob import glob
 
 from tqdm import tqdm
-import pandas as pd
 
-# -------------------------------------------------------------------------------------
-
-
-def xe_kr_input(mof_name):
-    sim_details = F"""SimulationType                MonteCarlo
-NumberOfCycles                1000
-NumberOfInitializationCycles  1000
-PrintEvery                    250
-Restart File                  no
-ChargeMethod                  none
-CutOff                        16.0
-
-Framework 0
-FrameworkName {mof_name}
-UnitCells 2 2 2
-ExternalTemperature 273
-ExternalPressure 1e6
-RemoveAtomNumberCodeFromLabel yes
-
-Component 0 MoleculeName        xenon
-ChargeMethod                    None
-IdealGasRosenbluthWeight        1.0
-FugacityCoefficient             0.9253
-MoleculeDefinition              local
-MolFraction                     0.20
-IdentityChangeProbability       1.0
-  NumberOfIdentityChanges       2
-  IdentityChangesList           0 1
-TranslationProbability          1.0
-ReinsertionProbability          1.0
-SwapProbability                 1.0
-CreateNumberOfMolecules         0
-
-Component 1 MoleculeName        krypton
-ChargeMethod                    None
-IdealGasRosenbluthWeight        1.0
-FugacityCoefficient             0.9671
-MoleculeDefinition              local
-MolFraction                     0.80
-IdentityChangeProbability       1.0
-  NumberOfIdentityChanges       2
-  IdentityChangesList           0 1
-TranslationProbability          1.0
-ReinsertionProbability          1.0
-SwapProbability                 1.0
-CreateNumberOfMolecules         0
-    """
-    return sim_details
+from utils import xe_kr_input, calc_min_image_indices
 
 
 # -------------------------------------------------------------------------------------
-# GLOBALS
-FF = 'Xe-Kr'
-FF_OUT = F'results_{FF}'
-IMAGE = 'crh53/raspa2'
-RESULTS = 'simulation_results'
+cutoff_radii = [12, 14, 16, 18]
+repeats = 3
+docker_line = 'tsp hare run --rm -d -v $PWD:/app crh53/raspa2 '
+out_dir = 'results'
+
+if not os.path.exists(out_dir):
+    os.mkdir(out_dir)
+
+print('Copying over raspa template files...')
+os.system(F'cp raspa_template/* {out_dir}')  # copy FF files
+print('completed !')
+print('Copying cif files across...')
+os.system(F'cp cifs/*.cif {out_dir}')  # copy all cif files
+print('completed!')
+
+cifs = glob(F'{out_dir}/*.cif')
 
 
-# SET UP DIR FOR SIMULATIONS
-if not os.path.exists(FF_OUT):
-    os.mkdir(FF_OUT)
-    os.mkdir(os.path.join(FF_OUT, RESULTS))
-
-os.system(F'cp simulations/{FF}/* {FF_OUT}')  # copy FF files
-os.system(F'cp cifs/*.cif {FF_OUT}')  # copy all cif files
-
-
-# PARAMETERS TO EVALUATE
-#cifs = [c.replace('.cif', '') for c in os.listdir('cifs') if '.cif' in c]
-cifs = pd.read_csv('E6_07_missing.txt', header=None)[0].tolist()
-
-
-# CREATING TASKS
 tasks = []
-for mof in tqdm(cifs):
-        
-    sim_name = F'simulation_{uuid4().hex}.input'
-        
-    with open(os.path.join(FF_OUT, sim_name), 'w') as f:
-        f.writelines(xe_kr_input(mof))
-    
-    tasks.append(F'tsp hare run --rm -d -v $PWD:/app crh53/raspa2 simulate -i {sim_name}')   
-   
+print('Writing task files...')
+for cif_file in tqdm(cifs):
+    mof_name = os.path.basename(cif_file)
 
-# WRITING TASKS  
-with open(os.path.join(FF_OUT, 'tasks.sh'), 'w') as f:
-    f.writelines([t+'\n' for t in tasks])
+    for radii in cutoff_radii:
+        na, nb, nc = calc_min_image_indices(cif_file, radii)
+        
+        for i in range(repeats):
+            
+            k = F'{mof_name}_{radii}_{i}'
+            sim_file_name = F'simulation_{k}.input'
+            content = xe_kr_input(mof_name, na, nb, nc)
+            
+            with open(os.path.join(out_dir, sim_file_name), 'w') as f:
+                f.writelines(content)
+            
+            tasks.append(F'{docker_line} simulate {sim_file_name} -a {k} \n')
+            
+print('completed!')
+
+with open(os.path.join(out_dir, 'tasks.sh'), 'w') as f:
+    f.write(tasks)
+            
+# ------------------------------------------------------------------------------------
