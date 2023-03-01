@@ -6,7 +6,7 @@ def xe_kr_input(mof_name, na, nb, nc):
     sim_details = F"""SimulationType                MonteCarlo
 NumberOfCycles                1000
 NumberOfInitializationCycles  1000
-PrintEvery                    250
+PrintEvery                    1000
 Restart File                  no
 ChargeMethod                  none
 CutOff                        16.0
