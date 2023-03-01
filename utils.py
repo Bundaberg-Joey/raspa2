@@ -2,14 +2,14 @@ import numpy as np
 from ase.io import read
 
 
-def xe_kr_input(mof_name, na, nb, nc):
+def xe_kr_input(mof_name, na, nb, nc, cutoff):
     sim_details = F"""SimulationType                MonteCarlo
 NumberOfCycles                1000
 NumberOfInitializationCycles  1000
 PrintEvery                    1000
 Restart File                  no
 ChargeMethod                  none
-CutOff                        16.0
+CutOff                        {float(cutoff)}
 
 Framework 0
 FrameworkName {mof_name}

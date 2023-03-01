@@ -37,7 +37,7 @@ for cif_file in tqdm(cifs):
             
             k = F'{mof_name}_{radii}_{i}'
             sim_file_name = F'simulation_{k}.input'
-            content = xe_kr_input(mof_name, na, nb, nc)
+            content = xe_kr_input(mof_name, na, nb, nc, radii)
             
             with open(os.path.join(out_dir, sim_file_name), 'w') as f:
                 f.writelines(content)
@@ -46,7 +46,10 @@ for cif_file in tqdm(cifs):
             
 print('completed!')
 
-with open(os.path.join(out_dir, 'tasks.sh'), 'w') as f:
+task_file = os.path.join(out_dir, 'tasks.sh')
+with open(task_file, 'w') as f:
     f.writelines(tasks)
+    
+os.system(F'chmod u+x {task_file}')
             
 # ------------------------------------------------------------------------------------
