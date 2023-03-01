@@ -24,8 +24,10 @@ print('completed!')
 
 cifs = glob(F'{out_dir}/*.cif')
 
-
+n_tasks = len(cutoff_radii) * repeats * len(os.listdir('cifs'))
 tasks = []
+count = 1
+
 print('Writing task files...')
 for cif_file in tqdm(cifs):
     mof_name = os.path.basename(cif_file)
@@ -42,14 +44,15 @@ for cif_file in tqdm(cifs):
             with open(os.path.join(out_dir, sim_file_name), 'w') as f:
                 f.writelines(content)
             
-            tasks.append(F'{docker_line} simulate {sim_file_name} -a {k} \n')
+            tasks.append(F'echo "$(date) | starting sim [{count} / {n_tasks}]" \n')
+            tasks.append(F'simulate {sim_file_name} -a {k} \n')
+            tasks.append(F'echo "$(date) | finishing sim [{count} / {n_tasks}]" \n')
+            count += 1
             
 print('completed!')
 
 task_file = os.path.join(out_dir, 'tasks.sh')
 with open(task_file, 'w') as f:
     f.writelines(tasks)
-    
-os.system(F'chmod u+x {task_file}')
-            
+                
 # ------------------------------------------------------------------------------------
