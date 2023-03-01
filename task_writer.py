@@ -47,6 +47,6 @@ for cif_file in tqdm(cifs):
 print('completed!')
 
 with open(os.path.join(out_dir, 'tasks.sh'), 'w') as f:
-    f.write(tasks)
+    f.writelines(tasks)
             
 # ------------------------------------------------------------------------------------
