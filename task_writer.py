@@ -30,7 +30,7 @@ count = 1
 
 print('Writing task files...')
 for cif_file in tqdm(cifs):
-    mof_name = os.path.basename(cif_file)
+    mof_name = os.path.basename(cif_file).strip('.cif')
 
     for radii in cutoff_radii:
         na, nb, nc = calc_min_image_indices(cif_file, radii)
